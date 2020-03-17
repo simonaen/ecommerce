@@ -1,2 +1,2 @@
 # ecommerce
-E-commerce website for developed educational purposes 
+E-commerce website developed for educational purposes 
