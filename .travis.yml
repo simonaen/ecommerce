@@ -8,8 +8,9 @@ matrix:
         - mvn test
     
     - language: node_js
-      node_js: "0.10"
+      node_js: "stable"
       before_script:
         - cd client
       script:
-        - npm test
+        - yarn install
+        - yarn test
