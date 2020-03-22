@@ -1,0 +1,15 @@
+matrix:
+  include:
+    - language: java
+      java: oraclejdk11
+      before_script:
+        - cd server
+      script:
+        - mvn test
+    
+    - language: node_js
+      node_js: "0.10"
+      before_script:
+        - cd client
+      script:
+        - npm test
