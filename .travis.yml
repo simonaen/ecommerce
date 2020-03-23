@@ -1,7 +1,8 @@
-matrix:
+os: linux
+jobs:
   include:
     - language: java
-      java: oraclejdk11
+      java: oraclejdk8
       before_script:
         - cd server
       script:
