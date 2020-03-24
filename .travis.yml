@@ -1,24 +1,23 @@
 os: linux
 
+dist: xenial
+
+language: ruby
+
 jobs:
   include:
     - stage: java unit tests
       language: java
-      java: 
+      jdk:
         - oraclejdk11
       before_script:
         - cd server
-        - echo $DOCKER_USERNAME
-        - echo $DOCKER_PASSWORD
-        - echo $HEROKU_USERNAME
-        - echo $HEROKU_API_KEY
-        - echo $HEROKU_PASSWORD
       script:
         - mvn test
     - stage: react unit tests
       language: node_js
       node_js:
-      - "stable"
+        - "stable"
       before_install:
         - cd client
       install:
@@ -33,6 +32,7 @@ jobs:
         - yarn install
       before_script:
         - yarn build
+        - mkdir -p ../server/src/main/resources/public
         - cp -r build/* ../server/src/main/resources/public
         - cd ../server
       script:
