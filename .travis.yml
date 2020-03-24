@@ -36,4 +36,4 @@ jobs:
         - cp -r build/* ../server/src/main/resources/public
         - cd ../server
       script:
-        - mvn clear heroku:deploy
+        - mvn clean heroku:deploy
