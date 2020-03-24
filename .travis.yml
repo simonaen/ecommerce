@@ -1,13 +1,25 @@
 os: linux
+
+language: java
+java: 
+  - oraclejdk11
+  
+services:
+  - docker
+
+env:
+  - DOCKER_COMPOSE_VERSION=1.16.1
+
 jobs:
   include:
+    - stage: unit tests
     - language: java
-      java: oraclejdk8
+      java: 
+        - oraclejdk11
       before_script:
         - cd server
       script:
         - mvn test
-    
     - language: node_js
       node_js: "stable"
       before_script:
@@ -15,3 +27,28 @@ jobs:
       script:
         - yarn install
         - yarn test
+
+    - stage: deploy
+      install:
+        - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+        - sudo docker login --username $DOCKER_USERNAME --password $DOCKER_PASSWORD
+        - sudo docker login --username $HEROKU_USERNAME --password $HEROKU_PASSWORD registry.heroku.com
+      script:
+        - sudo rm /usr/local/bin/docker-compose
+        - curl -L https://github.com/docker/compose/releases/download/${DOCKER_COMPOSE_VERSION}/docker-compose-`uname -s`-`uname -m` > docker-compose
+        - chmod +x docker-compose
+        - sudo mv docker-compose /usr/local/bin
+        - docker-compose up -d
+      after_success:
+        - sudo docker tag ecommerce_client:latest registry.heroku.com/ecommerce-bipbop/web
+        - sudo docker tag ecommerce_server:latest registry.heroku.com/ecommerce-bipbop/web
+      deploy:
+        provider: script
+        script: 
+          # push to dockerhub & heroku
+          docker push ecommerce_client:latest;
+          docker push registry.heroku.com/ecommerce-bipbop/web;
+          heroku container:release web --app ecommerce-bipbop
+        on:
+          branch: master
+      

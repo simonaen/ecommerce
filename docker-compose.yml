@@ -10,9 +10,13 @@ services:
     build:
       context: server # Use an image built from the specified dockerfile in the `polling-app-server` directory.
       dockerfile: Dockerfile
+    environment:
+      POSTGRES_ECOMMERCE_PASSWORD: ${POSTGRES_ECOMMERCE_PASSWORD}
+      POSTGRES_ECOMMERCE_USERNAME: ${POSTGRES_ECOMMERCE_USERNAME}
+      POSTGRES_ECOMMERCE_URL: ${POSTGRES_ECOMMERCE_URL}
     ports:
       - "8080:8080" # Forward the exposed port 8080 on the container to port 8080 on the host machine
-    restart: always
+    restart: unless-stopped
     networks: # Networks to join (Services on the same network can communicate with each other using their name)
       - backend
       - frontend
