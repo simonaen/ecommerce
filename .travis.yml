@@ -27,16 +27,18 @@ jobs:
     #     - yarn test
     - stage: deploy
       before_install:
+        - wget -qO- https://toolbelt.heroku.com/install.sh | sh
+        - heroku login
+        - heroku git:remote -a ${APP_NAME}
         - rm server/src/main/resources/static -rf
         - cd client
-      install:        
+      install:
         - yarn install
       before_script:
         - yarn build
         - cp -r build/* ../server/src/main/resources
-        - cd ..- heroku login
+        - cd ..
       script:
-        - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-        - heroku git:remote -a ${APP_NAME}
+        - git add .
+        - git commit -am "Deployment"
         - git subtree push --prefix server heroku master
-      
