@@ -2,43 +2,38 @@ os: linux
 
 jobs:
   include:
-    # - stage: java unit tests
-    #   language: java
-    #   java: 
-    #     - oraclejdk11
-    #   before_script:
-    #     - cd server
-    #     - echo $DOCKER_USERNAME
-    #     - echo $DOCKER_PASSWORD
-    #     - echo $HEROKU_USERNAME
-    #     - echo $HEROKU_API_KEY
-    #     - echo $HEROKU_PASSWORD
-    #   script:
-    #     - mvn test
-    # - stage: react unit tests
-    #   language: node_js
-    #   node_js:
-    #   - "stable"
-    #   before_install:
-    #     - cd client
-    #   install:
-    #     - yarn install
-    #   script:
-    #     - yarn test
+    - stage: java unit tests
+      language: java
+      java: 
+        - oraclejdk11
+      before_script:
+        - cd server
+        - echo $DOCKER_USERNAME
+        - echo $DOCKER_PASSWORD
+        - echo $HEROKU_USERNAME
+        - echo $HEROKU_API_KEY
+        - echo $HEROKU_PASSWORD
+      script:
+        - mvn test
+    - stage: react unit tests
+      language: node_js
+      node_js:
+      - "stable"
+      before_install:
+        - cd client
+      install:
+        - yarn install
+      script:
+        - yarn test
     - stage: deploy
       before_install:
         - wget -qO- https://toolbelt.heroku.com/install.sh | sh
-        - heroku login
-        - heroku git:remote -a ${APP_NAME}
-        - rm server/src/main/resources/static -rf
         - cd client
       install:
         - yarn install
       before_script:
         - yarn build
-        - cp -r build/* ../server/src/main/resources
-        - cd ..
+        - cp -r build/* ../server/src/main/resources/public
+        - cd ../server
       script:
-        - git add .
-        - git commit -am "Deployment"
-        - git subtree push --prefix server heroku master
+        - mvn clear heroku:deploy
