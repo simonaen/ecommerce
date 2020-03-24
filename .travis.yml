@@ -1,9 +1,9 @@
 os: linux
 
 language: java
-java: 
+java:
   - oraclejdk11
-  
+
 services:
   - docker
 
