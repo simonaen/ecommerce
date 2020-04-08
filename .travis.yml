@@ -6,32 +6,44 @@ language: ruby
 
 jobs:
   include:
-    - stage: java unit tests
+    - stage: java tests
       language: java
       jdk:
         - oraclejdk11
+
       before_script:
         - cd server
+
       script:
         - mvn test
-    - stage: react unit tests
+        
+    - stage: Angular tests
       language: node_js
       node_js:
         - "stable"
+      
+      addons:
+        chrome: stable
+      
+      cache:
+        directories:
+          - ./node_modules
+
       before_install:
         - cd client
+
       install:
-        - yarn install
+        - npm install
       script:
-        - yarn test
+        - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
+
     - stage: deploy
       before_install:
-        - wget -qO- https://toolbelt.heroku.com/install.sh | sh
         - cd client
       install:
-        - yarn install
+        - npm install
       before_script:
-        - yarn build
+        - npm run build --prod
         - mkdir -p ../server/src/main/resources/public
         - cp -r build/* ../server/src/main/resources/public
         - cd ../server
