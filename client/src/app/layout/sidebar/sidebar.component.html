@@ -1,0 +1,36 @@
+<div class="header-level">
+  <app-menu-icon></app-menu-icon>
+  <ng-container *ngTemplateOutlet="!sidebarCollapsed ? gender: null"></ng-container>
+</div>
+<div class="content-level" [ngClass]="sidebarCollapsed ? 'collapsed' : 'expanded'">
+  <figure class="brand animated fadeIn faster" *ngIf="!sidebarCollapsed">
+    <img src="assets/logo.svg" alt="e-commerce logo">
+  </figure>
+  <ng-container *ngTemplateOutlet="sidebarCollapsed ? gender: null"></ng-container>
+  <div class="categories">
+    <span class="mat-title animated fadeIn faster" *ngIf="!sidebarCollapsed">
+      Explore
+    </span>
+    <button mat-button *ngFor="let category of categories; let i = index">
+      <span class="button-content">
+        <a routerLink="/">
+          <figure>
+            <img [src]="category.iconLink" [alt]="category.title">
+          </figure>
+        </a>
+      <span class="mat-body-1 animated fadeIn faster" [hidden]="sidebarCollapsed">{{category.title}}</span>
+      </span>
+    </button>
+  </div>
+</div>
+
+<ng-template #gender>
+  <div class="gender">
+    <button mat-button>
+      <fa-icon [icon]="icons.male" class="male-icon"></fa-icon>
+    </button>
+    <button mat-button>
+      <fa-icon [icon]="icons.female" class="female-icon"></fa-icon>
+    </button>
+  </div>
+</ng-template>

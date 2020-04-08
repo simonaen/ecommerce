@@ -1,0 +1,14 @@
+:host {
+  display: flex;
+
+  nav {
+    display: flex;
+    position: static;
+    height: 100vh;
+    white-space: nowrap;
+  }
+
+  .content {
+    flex: 1;
+  }
+}
