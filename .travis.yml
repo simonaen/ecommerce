@@ -2,7 +2,9 @@ os: linux
 
 dist: xenial
 
-language: ruby
+language: node_js
+node_js:
+  - "11"
 
 jobs:
   include:
@@ -17,17 +19,13 @@ jobs:
       script:
         - mvn test
         
-    - stage: Angular tests
+    - stage: angular tests
       language: node_js
       node_js:
-        - "stable"
+        - "11"
       
       addons:
         chrome: stable
-      
-      cache:
-        directories:
-          - ./node_modules
 
       before_install:
         - cd client
@@ -37,7 +35,7 @@ jobs:
       script:
         - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
 
-    - stage: deploy
+    - stage: deploy to Azure
       before_install:
         - cd client
       install:
@@ -45,7 +43,9 @@ jobs:
       before_script:
         - npm run build --prod
         - mkdir -p ../server/src/main/resources/public
-        - cp -r build/* ../server/src/main/resources/public
+        - cp -r dist/client/* ../server/src/main/resources/public
         - cd ../server
+        - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+        - az login -u ${AZURE_WA_USERNAME} -p ${AZURE_WA_PASSWORD}
       script:
-        - mvn clean heroku:deploy
+        - mvn clean package azure-webapp:deploy
