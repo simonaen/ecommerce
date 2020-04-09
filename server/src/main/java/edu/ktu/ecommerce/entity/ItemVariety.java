@@ -1,7 +1,6 @@
 package edu.ktu.ecommerce.entity;
 
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
@@ -9,26 +8,20 @@ import javax.persistence.*;
 
 @Data
 @NoArgsConstructor
-@Builder
 @AllArgsConstructor
 @Entity
-public class Item {
+public class ItemVariety {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    private String name;
-    private Double price;
-    private String description;
-    private String fullDescription;
+    private String sku;
+    private Double discountPercent;
 
     @ManyToOne
-    private Brand brand;
+    private Item itemId;
 
     @ManyToOne
-    private Color color;
-
-    @ManyToOne
-    private ItemCategory itemCategory;
+    private Size size;
 }
