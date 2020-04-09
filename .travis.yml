@@ -32,14 +32,20 @@ jobs:
 
       install:
         - npm install
+        
       script:
         - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
 
     - stage: deploy to Azure
+    
+      if: branch = master
+
       before_install:
         - cd client
+        
       install:
         - npm install
+
       before_script:
         - npm run build --prod
         - mkdir -p ../server/src/main/resources/public
@@ -47,5 +53,6 @@ jobs:
         - cd ../server
         - curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
         - az login -u ${AZURE_WA_USERNAME} -p ${AZURE_WA_PASSWORD}
+        
       script:
         - mvn clean package azure-webapp:deploy
