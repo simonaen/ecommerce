@@ -19,12 +19,12 @@ public class EcommerceApplication {
         SpringApplication.run(EcommerceApplication.class, args);
     }
 
-    @Bean
-    public CommandLineRunner seeder(ItemRepository itemRepository) {
-        return (args) -> {
-            if (itemRepository.count() == 0) {
-                log.info("Seeded two items");
-            }
-        };
-    }
+//    @Bean
+//    public CommandLineRunner seeder(ItemRepository itemRepository) {
+//        return (args) -> {
+//            if (itemRepository.count() == 0) {
+//                log.info("Seeded two items");
+//            }
+//        };
+//    }
 }
