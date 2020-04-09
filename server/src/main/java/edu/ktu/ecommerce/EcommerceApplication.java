@@ -23,8 +23,6 @@ public class EcommerceApplication {
     public CommandLineRunner seeder(ItemRepository itemRepository) {
         return (args) -> {
             if (itemRepository.count() == 0) {
-                itemRepository.save(new Item("Item 1", 9.99));
-                itemRepository.save(new Item("Item 2", 12.99));
                 log.info("Seeded two items");
             }
         };
