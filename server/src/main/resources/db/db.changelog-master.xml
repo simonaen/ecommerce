@@ -88,4 +88,9 @@
     <changeSet author="tedra (generated)" id="1586457800276-13">
         <addForeignKeyConstraint baseColumnNames="item_id_id" baseTableName="item_variety" constraintName="FKpc179y0octv0upqn0c81ei1qn" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="item" validate="true"/>
     </changeSet>
+    <changeSet author="tedraykov" id="1587132929273-1">
+        <addColumn tableName="color">
+            <column name="hex" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
 </databaseChangeLog>
