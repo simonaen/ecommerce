@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -20,7 +22,10 @@ public class Item {
 
     private String name;
     private Double price;
+    private Double discountedPrice;
     private String description;
+
+    @Column(columnDefinition="VARCHAR(5000)")
     private String fullDescription;
 
     @ManyToOne
@@ -30,5 +35,11 @@ public class Item {
     private Color color;
 
     @ManyToOne
-    private ItemCategory itemCategory;
+    private ItemCategory category;
+
+    @OneToMany(mappedBy = "item")
+    private List<ItemImage> images;
+
+    @OneToMany(mappedBy = "item")
+    private List<ItemVariety> itemVarieties;
 }

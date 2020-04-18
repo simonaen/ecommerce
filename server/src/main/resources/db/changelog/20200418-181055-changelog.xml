@@ -1,0 +1,19 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:pro="http://www.liquibase.org/xml/ns/pro" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/pro http://www.liquibase.org/xml/ns/pro/liquibase-pro-3.8.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.8.xsd">
+    <changeSet author="tedra (generated)" id="1587233465133-1">
+        <addColumn tableName="item_variety">
+            <column name="ean" type="varchar(255)"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="tedra (generated)" id="1587233465133-2">
+        <addColumn tableName="item_variety">
+            <column name="quantity" type="int4"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="tedra (generated)" id="1587233465133-3">
+        <dropColumn columnName="discount_percent" tableName="item_variety"/>
+    </changeSet>
+    <changeSet author="tedra (generated)" id="1587233465133-4">
+        <dropColumn columnName="sku" tableName="item_variety"/>
+    </changeSet>
+</databaseChangeLog>
