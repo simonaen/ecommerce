@@ -1,0 +1,43 @@
+os: linux
+
+dist: xenial
+
+sudo: false
+
+language: node_js
+node_js:
+  - "11"
+  
+cache:
+  directories:
+    - $HOME/.m2
+
+jobs:
+  include:
+    - stage: java tests
+      language: java
+      jdk:
+        - oraclejdk11
+
+      before_script:
+        - cd server
+
+      script:
+        - mvn test
+        
+    - stage: angular tests
+      language: node_js
+      node_js:
+        - "11"
+      
+      addons:
+        chrome: stable
+
+      before_install:
+        - cd client
+
+      install:
+        - npm install
+        
+      script:
+        - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
