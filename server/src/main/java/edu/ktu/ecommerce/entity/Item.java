@@ -1,34 +1,45 @@
 package edu.ktu.ecommerce.entity;
 
-import javax.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
+import javax.persistence.*;
+import java.util.List;
+import java.util.Set;
+
+@Data
+@NoArgsConstructor
+@Builder
+@AllArgsConstructor
 @Entity
 public class Item {
-    
+
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     private String name;
     private Double price;
+    private Double discountedPrice;
+    private String description;
 
-    protected Item() {
-    }
+    @Column(columnDefinition="VARCHAR(5000)")
+    private String fullDescription;
 
-    public Item(String name, Double price) {
-        this.name = name;
-        this.price = price;
-    }
+    @ManyToOne
+    private Brand brand;
 
-    public Long getId() {
-        return this.id;
-    }
+    @ManyToOne
+    private Color color;
 
-    public String getName() {
-        return this.name;
-    }
+    @ManyToOne
+    private ItemCategory category;
 
-    public Double getPrice() {
-        return this.price;
-    }
+    @OneToMany(mappedBy = "item")
+    private List<ItemImage> images;
+
+    @OneToMany(mappedBy = "item")
+    private List<ItemVariety> itemVarieties;
 }

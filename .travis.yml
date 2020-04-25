@@ -2,9 +2,15 @@ os: linux
 
 dist: xenial
 
+sudo: false
+
 language: node_js
 node_js:
   - "11"
+  
+cache:
+  directories:
+    - $HOME/.m2
 
 jobs:
   include:
@@ -32,5 +38,6 @@ jobs:
 
       install:
         - npm install
+        
       script:
         - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
