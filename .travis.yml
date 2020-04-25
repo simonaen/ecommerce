@@ -4,15 +4,12 @@ dist: xenial
 
 sudo: false
 
-
 language: node_js
 node_js:
   - "11"
   
 cache:
-
   directories:
-
     - $HOME/.m2
 
 jobs:
@@ -44,4 +41,3 @@ jobs:
         
       script:
         - npm run test -- --watch=false --no-progress --browsers=ChromeHeadlessNoSandbox
-
