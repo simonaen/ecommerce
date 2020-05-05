@@ -1,0 +1,58 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100%;
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+  flex: 1;
+}
+
+figure {
+  align-items: center;
+  flex: 1;
+
+  img {
+    height: 3.2rem;
+  }
+}
+
+h1 {
+  font-weight: bold;
+  text-align: center;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 2rem;
+
+  .button-group {
+    display: flex;
+    flex-direction: column;
+
+    button {
+      padding: 0.5rem 0;
+      margin: 0.5rem 0;
+      font-weight: bold;
+
+      img {
+        height: 18px;
+        padding-right: 0.25rem;
+        padding-bottom: 3px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 425px) {
+  .wrapper {
+    max-width: 425px;
+  }
+}

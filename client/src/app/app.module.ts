@@ -6,6 +6,8 @@ import {LayoutModule} from './layout/layout.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {reducer as layoutReducer} from './layout/store/layout.reducer';
+import {AppRoutingModule} from "./app-routing.module";
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -15,6 +17,8 @@ import {reducer as layoutReducer} from './layout/store/layout.reducer';
     BrowserModule,
     LayoutModule,
     BrowserAnimationsModule,
+    AppRoutingModule,
+    HttpClientModule,
     StoreModule.forRoot({layout: layoutReducer}, {
       runtimeChecks: {
         strictStateImmutability: true,

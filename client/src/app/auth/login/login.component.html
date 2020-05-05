@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <figure><img src="assets/logo.svg" alt=""></figure>
+  <h1 class="mat-display-3">Login</h1>
+  <form [formGroup]="loginForm" (submit)="onSubmit()">
+    <mat-form-field appearance="outline">
+      <mat-label>📧 Email</mat-label>
+      <input type="email" matInput placeholder="Your email">
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>🔑 Password</mat-label>
+      <input type="password" matInput>
+    </mat-form-field>
+    <div class="button-group">
+      <button mat-raised-button color="primary" type="submit">LOGIN WITH EMAIL</button>
+      <button mat-raised-button type="button">
+        <img src="assets/icons/google.svg" alt="Google icon">LOGIN WITH GOOGLE
+      </button>
+    </div>
+  </form>
+</div>
