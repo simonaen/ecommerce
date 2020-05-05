@@ -4,7 +4,6 @@ import edu.ktu.ecommerce.exception.UserExistException;
 import edu.ktu.ecommerce.model.auth.RegisterRequest;
 import edu.ktu.ecommerce.model.auth.LoginRequest;
 import edu.ktu.ecommerce.model.auth.LoginResponse;
-import edu.ktu.ecommerce.security.UserDetailsServiceImpl;
 import edu.ktu.ecommerce.service.UserService;
 import edu.ktu.ecommerce.service.impl.UserServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -25,8 +24,9 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<?> signIn(@Valid @RequestBody LoginRequest request) {
+    public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) {
         String jwt = userService.login(request);
+
         return ResponseEntity.ok(new LoginResponse(jwt));
     }
 
@@ -39,6 +39,8 @@ public class UserController {
                 .email(request.getEmail())
                 .password(request.getPassword())
                 .build();
-        return signIn(loginRequest);
+        String jwt = userService.login(loginRequest);
+
+        return ResponseEntity.ok(new LoginResponse(jwt));
     }
 }
