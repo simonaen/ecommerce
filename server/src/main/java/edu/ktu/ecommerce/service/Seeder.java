@@ -74,7 +74,6 @@ public class Seeder {
                 sizeRepository.saveAndFlush(size);
             }
         }
-
     }
 
     private void seedItems() throws IOException {
