@@ -27,3 +27,15 @@
     }
   }
 }
+
+@mixin custom-snack-bar-theme($client-theme) {
+  $warn: map-get($client-theme, warn);
+  $success: map-get($client-theme, success);
+
+  .mat-snack-bar-container.warning {
+    background: mat-color($warn);
+  }
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}

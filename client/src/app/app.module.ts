@@ -6,27 +6,42 @@ import {LayoutModule} from './layout/layout.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {StoreModule} from '@ngrx/store';
 import {reducer as layoutReducer} from './layout/store/layout.reducer';
+import {reducer as authReducer} from './core/store/auth/auth.reducer';
 import {AppRoutingModule} from "./app-routing.module";
 import {HttpClientModule} from "@angular/common/http";
+import {EffectsModule} from "@ngrx/effects";
+import {StoreDevtoolsModule} from "@ngrx/store-devtools";
+import {MatSnackBarModule} from "@angular/material/snack-bar";
+import {NotificationComponent} from "./core/services/shared/notification.service";
+import {AuthService} from "./core/services/auth/auth.service";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotificationComponent
   ],
   imports: [
     BrowserModule,
-    LayoutModule,
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    StoreModule.forRoot({layout: layoutReducer}, {
+    MatSnackBarModule,
+    StoreModule.forRoot({
+      layout: layoutReducer,
+      auth: authReducer
+    }, {
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true
       }
-    })
+    }),
+    EffectsModule.forRoot(),
+    StoreDevtoolsModule.instrument({maxAge: 25}),
+    LayoutModule,
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [AuthService],
+  bootstrap: [AppComponent],
+  entryComponents: [NotificationComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

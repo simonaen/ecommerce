@@ -8,6 +8,10 @@ import {RouterModule, Routes} from "@angular/router";
 import {MatButtonModule} from "@angular/material/button";
 import {HttpClientModule} from "@angular/common/http";
 import {ReactiveFormsModule} from "@angular/forms";
+import {StoreModule} from "@ngrx/store";
+import {EffectsModule} from "@ngrx/effects";
+import {AuthEffects} from "../../core/store/auth/auth.effects";
+import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
 
 const authModuleRoutes: Routes = [
   {path: '', redirectTo: 'login'},
@@ -22,9 +26,12 @@ const authModuleRoutes: Routes = [
     MatCardModule,
     MatInputModule,
     RouterModule.forChild(authModuleRoutes),
+    StoreModule,
+    EffectsModule.forFeature([AuthEffects]),
     MatButtonModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatProgressSpinnerModule
   ]
 })
 export class AuthModule {

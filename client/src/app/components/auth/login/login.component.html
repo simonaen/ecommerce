@@ -4,17 +4,20 @@
   <form [formGroup]="loginForm" (submit)="onSubmit()">
     <mat-form-field appearance="outline">
       <mat-label>📧 Email</mat-label>
-      <input type="email" matInput placeholder="Your email">
+      <input type="email" matInput placeholder="Your email" formControlName="email">
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label>🔑 Password</mat-label>
-      <input type="password" matInput>
+      <input type="password" matInput formControlName="password">
     </mat-form-field>
     <div class="button-group">
-      <button mat-raised-button color="primary" type="submit">LOGIN WITH EMAIL</button>
-      <button mat-raised-button type="button">
+      <button mat-raised-button color="primary" type="button" (click)="onSubmit()">
+        <span>LOGIN WITH EMAIL</span>
+      </button>
+      <button mat-raised-button type="button" (click)="onSubmitGoogle()">
         <img src="assets/icons/google.svg" alt="Google icon">LOGIN WITH GOOGLE
       </button>
     </div>
   </form>
+  <a class="signup" routerLink="/auth/register">Signup</a>
 </div>

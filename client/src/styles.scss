@@ -36,6 +36,7 @@ $client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
 @include custom-toolbar-theme($client-theme);
 @include custom-button-theme($client-theme);
 @include custom-form-field-theme($client-theme);
+@include custom-snack-bar-theme($client-theme);
 /* You can add global styles to this file, and also import other style files */
 
 
@@ -44,7 +45,6 @@ html {
 }
 
 html * {
-  font-size: 15px;
   box-sizing: border-box;
 }
 
@@ -53,6 +53,7 @@ html, body {
 }
 
 body {
+  font-size: 14px;
   margin: 0;
   font-family: Montserrat, sans-serif;
 }
