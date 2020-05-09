@@ -11,7 +11,9 @@ import {Store} from "@ngrx/store";
 import {AuthState} from "../../store/auth";
 import {AuthActions} from "../../store/auth/auth.actions";
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class AuthService {
   readonly api = environment.serverUrl;
   readonly tokenKey = 'jwt';

@@ -13,7 +13,6 @@ import {EffectsModule} from "@ngrx/effects";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NotificationComponent} from "./core/services/shared/notification.service";
-import {AuthService} from "./core/services/auth/auth.service";
 
 @NgModule({
   declarations: [
@@ -39,7 +38,7 @@ import {AuthService} from "./core/services/auth/auth.service";
     StoreDevtoolsModule.instrument({maxAge: 25}),
     LayoutModule,
   ],
-  providers: [AuthService],
+  providers: [],
   bootstrap: [AppComponent],
   entryComponents: [NotificationComponent]
 })
