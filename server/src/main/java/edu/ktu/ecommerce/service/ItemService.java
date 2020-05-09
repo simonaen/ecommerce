@@ -15,7 +15,6 @@ import javax.transaction.Transactional;
 public class ItemService {
     private ItemRepository itemRepository;
 
-    @Autowired
     public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
     }

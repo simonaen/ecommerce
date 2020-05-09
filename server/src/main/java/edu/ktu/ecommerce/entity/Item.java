@@ -1,5 +1,7 @@
 package edu.ktu.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -41,5 +43,6 @@ public class Item {
     private List<ItemImage> images;
 
     @OneToMany(mappedBy = "item")
+    @JsonManagedReference
     private List<ItemVariety> itemVarieties;
 }

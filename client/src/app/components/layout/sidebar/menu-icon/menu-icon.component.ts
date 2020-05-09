@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {isSidebarCollapsed, LayoutState} from '../../store';
+import {isSidebarCollapsed, LayoutState} from '../../../../core/store/state/layout.state';
 import {take, tap} from 'rxjs/operators';
-import {collapseSidebar, expandSidebar} from '../../store/layout.actions';
+import {collapseSidebar, expandSidebar} from '../../../../core/store/actions/layout.actions';
 import {Observable} from 'rxjs';
 
 @Component({

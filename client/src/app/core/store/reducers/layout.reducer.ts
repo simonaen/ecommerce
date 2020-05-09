@@ -1,6 +1,6 @@
-import * as Actions from './layout.actions';
+import * as Actions from '../actions/layout.actions';
 import {Action, createReducer, on} from '@ngrx/store';
-import {LayoutState} from './index';
+import {LayoutState} from '../state/layout.state';
 
 export const initialState: LayoutState = {
   sidebarCollapsed: false

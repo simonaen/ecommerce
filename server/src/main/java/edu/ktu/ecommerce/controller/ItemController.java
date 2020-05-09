@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 @Controller
-@RequestMapping(path = "/item")
+@RequestMapping(path = "/api/item")
 @ResponseBody
 public class ItemController {
     private final ItemService itemService;

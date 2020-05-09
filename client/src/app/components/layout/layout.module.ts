@@ -3,7 +3,7 @@ import {CommonModule} from '@angular/common';
 import {NavbarComponent} from './navbar/navbar.component';
 import {SidebarComponent} from './sidebar/sidebar.component';
 import {LayoutComponent} from './layout.component';
-import {AppRoutingModule} from '../app-routing.module';
+import {AppRoutingModule} from '../../app-routing.module';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MenuIconComponent} from './sidebar/menu-icon/menu-icon.component';
 import {MatButtonModule} from '@angular/material/button';

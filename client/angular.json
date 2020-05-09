@@ -29,7 +29,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/animate.css/animate.css"
+              "node_modules/animate.css/animate.css",
+				"src/theming/_variables.scss"
             ],
             "scripts": []
           },
@@ -96,7 +97,8 @@
             ],
             "styles": [
               "src/styles.scss",
-              "node_modules/animate.css/animate.css"
+              "node_modules/animate.css/animate.css",
+			  "src/theming/_variables.scss"
             ],
             "scripts": []
           }

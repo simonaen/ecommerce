@@ -1,0 +1,18 @@
+<mat-card>
+	<mat-card-content>
+		<div class="like-button">
+			<fa-stack>
+				<fa-icon [icon]="circle" stackItemSize="2x" class="icon-background"></fa-icon>
+				<fa-icon [icon]="heart" stackItemSize="1x" class="heart"></fa-icon>
+			</fa-stack>
+		</div>
+		<!--		<img [src]="coverImage" alt="{{title}}">-->
+		<img src="../assets/dress.jpg" alt="{{title}}">
+	</mat-card-content>
+</mat-card>
+
+<a href=""><strong class="title">{{title}}</strong></a>
+<div class="price">
+	<span *ngIf="discountPrice" class="discount">€ {{discountPrice}}</span>
+	<span [ngClass]="discountPrice ? 'cross' : ''">€ {{price}}</span>
+</div>

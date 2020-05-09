@@ -4,7 +4,7 @@
 </div>
 <div class="content-level" [ngClass]="sidebarCollapsed ? 'collapsed' : 'expanded'">
   <figure class="brand animated fadeIn faster" *ngIf="!sidebarCollapsed">
-    <img src="assets/logo.svg" alt="e-commerce logo">
+    <img src="../assets/logo.svg" alt="e-commerce logo">
   </figure>
   <ng-container *ngTemplateOutlet="sidebarCollapsed ? gender: null"></ng-container>
   <div class="categories">

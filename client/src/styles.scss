@@ -3,6 +3,7 @@
 // For more information: https://material.angular.io/guide/theming
 @import '~@angular/material/theming';
 @import './theming/custom-theme';
+@import "./theming/_variables";
 // Plus imports for other components in your app.
 
 // Custom typography
@@ -16,17 +17,8 @@ $app-typography: mat-typography-config(
 // Be sure that you only ever include this mixin once!
 @include mat-core($app-typography);
 
-// Define the palettes for your theme using the Material Design palettes available in palette.scss
-// (imported above). For each palette, you can optionally specify a default, lighter, and darker
-// hue. Available color palettes: https://material.io/design/color/
-$client-primary: mat-palette($mat-cyan);
-$client-accent: mat-palette($mat-pink, A200, A100, A400);
-
-// The warn palette is optional (defaults to red).
-$client-warn: mat-palette($mat-red);
-
 // Create the theme object (a Sass map containing all of the palettes).
-$client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
+$client-theme: mat-light-theme($client-primary-palette, $client-accent-palette, $client-warn-palette);
 
 // Include theme styles for core and each component used in your app.
 // Alternatively, you can import and @include the theme mixins for each component
@@ -35,7 +27,7 @@ $client-theme: mat-light-theme($client-primary, $client-accent, $client-warn);
 
 // Include theme styles for your custom components.
 @include custom-toolbar-theme($client-theme);
-
+@include custom-card-theme($client-theme);
 /* You can add global styles to this file, and also import other style files */
 
 
@@ -44,7 +36,7 @@ html {
 }
 
 html * {
-  font-size: 15px;
+  font-size: 14px;
 }
 
 html, body { height: 100%; }

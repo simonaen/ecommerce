@@ -1,0 +1,9 @@
+<div class="items-container">
+	<div *ngFor="let item of items">
+	<app-item [title]="item.name"
+			  [price]="item.price"
+			  [coverImage]="item.coverImage"
+			  [discountPrice]="(item.discountedPrice !== item.price) ? item.discountedPrice : null"
+	></app-item>
+	</div>
+</div>

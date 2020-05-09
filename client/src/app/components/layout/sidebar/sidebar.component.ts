@@ -1,7 +1,7 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {faMars, faVenus} from '@fortawesome/free-solid-svg-icons';
 import {Subscription} from 'rxjs';
-import {isSidebarCollapsed, LayoutState} from '../store';
+import {isSidebarCollapsed, LayoutState} from '../../../core/store/state/layout.state';
 import {Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 

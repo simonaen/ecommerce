@@ -1,5 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {isSidebarCollapsed, LayoutState} from '../store';
+import {isSidebarCollapsed, LayoutState} from '../../../core/store/state/layout.state';
 import {Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {Subscription} from 'rxjs';

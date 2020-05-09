@@ -1,5 +1,7 @@
 package edu.ktu.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +22,7 @@ public class ItemVariety {
     private String ean;
 
     @ManyToOne
+    @JsonBackReference
     private Item item;
 
     @ManyToOne

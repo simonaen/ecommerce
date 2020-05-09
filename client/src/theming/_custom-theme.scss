@@ -1,7 +1,20 @@
 @import 'node_modules/@angular/material/theming';
 
 @mixin custom-toolbar-theme($client-theme) {
-  .mat-toolbar {
-    background: map_get($mat-light-theme-background, card);
-  }
+	.mat-toolbar {
+		background: map_get($mat-light-theme-background, card);
+	}
 }
+
+@mixin custom-card-theme($client-theme) {
+	$accent: map-get($client-theme, accent);
+
+	mat-card.mat-card {
+		border-radius: 0.75rem;
+	}
+
+	.mat-card:not([class*=mat-elevation-z]) {
+		@include mat-elevation(6, $mat-elevation-color, 0.2);
+	}
+}
+
