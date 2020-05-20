@@ -1,17 +1,19 @@
-import * as Actions from '../actions/layout.actions';
 import {Action, createReducer, on} from '@ngrx/store';
-import {LayoutState} from '../state/layout.state';
+import {LayoutState} from './index';
+import {LayoutActions} from "./layout.actions";
 
 export const initialState: LayoutState = {
-  sidebarCollapsed: false
+  sidebarCollapsed: false,
+  gender: null
 };
 
-const sidebarReducer = createReducer(
+const _reducer = createReducer(
   initialState,
-  on(Actions.collapseSidebar, state => ({...state, sidebarCollapsed: true})),
-  on(Actions.expandSidebar, state => ({...state, sidebarCollapsed: false}))
+  on(LayoutActions.collapseSidebar, state => ({...state, sidebarCollapsed: true})),
+  on(LayoutActions.expandSidebar, state => ({...state, sidebarCollapsed: false})),
+  on(LayoutActions.setGender, (state, action) => ({...state, gender: action.gender}))
 );
 
 export function reducer(state: LayoutState, action: Action): LayoutState {
-  return sidebarReducer(state, action);
+  return _reducer(state, action);
 }

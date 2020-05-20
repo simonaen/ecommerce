@@ -18,3 +18,36 @@
 	}
 }
 
+@mixin custom-button-theme($client-theme) {
+  button.mat-raised-button {
+    border-radius: 0.5rem;
+  }
+
+  .mat-raised-button:not([class*=mat-elevation-z]) {
+    @include mat-elevation(6, $mat-elevation-color, 0.2);
+  }
+}
+
+@mixin custom-form-field-theme($client-theme) {
+  .mat-form-field-outline {
+    div.mat-form-field-outline-start {
+      border-radius: 12px 0 0 12px;
+    }
+
+    div.mat-form-field-outline-end {
+      border-radius: 0 12px 12px 0;
+    }
+  }
+}
+
+@mixin custom-snack-bar-theme($client-theme) {
+  $warn: map-get($client-theme, warn);
+  $success: map-get($client-theme, success);
+
+  .mat-snack-bar-container.warning {
+    background: mat-color($warn);
+  }
+  .mat-simple-snackbar-action {
+    color: white;
+  }
+}
