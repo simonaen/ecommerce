@@ -1,9 +1,10 @@
 package edu.ktu.ecommerce.controller;
 
-import edu.ktu.ecommerce.exception.UserExistException;
-import edu.ktu.ecommerce.model.auth.RegisterRequest;
+import edu.ktu.ecommerce.exception.auth.InvalidRefreshTokenException;
+import edu.ktu.ecommerce.exception.auth.UserExistException;
 import edu.ktu.ecommerce.model.auth.LoginRequest;
-import edu.ktu.ecommerce.model.auth.LoginResponse;
+import edu.ktu.ecommerce.model.auth.RefreshTokenRequest;
+import edu.ktu.ecommerce.model.auth.RegisterRequest;
 import edu.ktu.ecommerce.service.UserService;
 import edu.ktu.ecommerce.service.impl.UserServiceImpl;
 import org.springframework.http.ResponseEntity;
@@ -26,22 +27,19 @@ public class UserController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@Valid @RequestBody LoginRequest request) throws AuthenticationException {
-        String jwt = userService.login(request);
-
-        return ResponseEntity.ok(new LoginResponse(jwt));
+        return ResponseEntity.ok(userService.login(request));
     }
 
     @PostMapping("/register")
     public ResponseEntity<?> register(@Valid @RequestBody RegisterRequest request) throws UserExistException {
-        userService.register(request);
+        return ResponseEntity.ok(userService.register(request));
+    }
 
-        // After successful registration, generate jwt
-        var loginRequest = LoginRequest.builder()
-                .email(request.getEmail())
-                .password(request.getPassword())
-                .build();
-        String jwt = userService.login(loginRequest);
+    @PostMapping("/refresh")
+    public ResponseEntity<?> refreshToken(@RequestBody @Valid RefreshTokenRequest tokenRequest) {
+        var token = userService.refreshToken(tokenRequest.getRefreshToken())
+                .orElseThrow(InvalidRefreshTokenException::new);
 
-        return ResponseEntity.ok(new LoginResponse(jwt));
+        return ResponseEntity.ok(token);
     }
 }

@@ -1,8 +1,12 @@
 package edu.ktu.ecommerce.security;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.ktu.ecommerce.exception.RestExceptionHandler;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.web.authentication.WebAuthenticationDetailsSource;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
@@ -13,15 +17,18 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-@Component
 public class JwtRequestFilter extends OncePerRequestFilter {
 
-    private final UserDetailsServiceImpl userDetailsService;
+    private final UserDetailsService userDetailsService;
     private final JwtUtil jwtUtil;
+    private final RestExceptionHandler exceptionHandler;
+    private final ObjectMapper mapper;
 
-    public JwtRequestFilter(UserDetailsServiceImpl userDetailsService, JwtUtil jwtUtil) {
+    public JwtRequestFilter(UserDetailsService userDetailsService, JwtUtil jwtUtil, RestExceptionHandler exceptionHandler, ObjectMapper mapper) {
         this.userDetailsService = userDetailsService;
         this.jwtUtil = jwtUtil;
+        this.exceptionHandler = exceptionHandler;
+        this.mapper = mapper;
     }
 
     @Override
@@ -35,9 +42,20 @@ public class JwtRequestFilter extends OncePerRequestFilter {
 
         if (authorizationHeader != null && authorizationHeader.startsWith("Bearer ")) {
             jwt = authorizationHeader.substring(7);
-            username = jwtUtil.extractUsername(jwt);
         }
 
+        try {
+            username = jwtUtil.extractUsername(jwt);
+        } catch (ExpiredJwtException e) {
+            var errorResponseEntity = exceptionHandler.handleExpiredJwt(e);
+            response.setStatus(errorResponseEntity.getStatusCodeValue());
+            response.setContentType("application/json");
+            response.getOutputStream().print(
+                    mapper.writeValueAsString(errorResponseEntity.getBody())
+            );
+            chain.doFilter(request, response);
+            return;
+        }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 

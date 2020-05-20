@@ -1,5 +1,7 @@
 package edu.ktu.ecommerce.exception;
 
+import edu.ktu.ecommerce.exception.auth.UserExistException;
+import io.jsonwebtoken.ExpiredJwtException;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -132,7 +134,14 @@ public class RestExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(AuthenticationException.class)
-    protected  ResponseEntity<Object> handleAuthentication(AuthenticationException ex) {
+    protected ResponseEntity<Object> handleAuthentication(AuthenticationException ex) {
+        ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED);
+        apiError.setMessage(ex.getMessage());
+        return buildResponseEntity(apiError);
+    }
+
+    @ExceptionHandler(ExpiredJwtException.class)
+    public ResponseEntity<Object> handleExpiredJwt(ExpiredJwtException ex) {
         ApiError apiError = new ApiError(HttpStatus.UNAUTHORIZED);
         apiError.setMessage(ex.getMessage());
         return buildResponseEntity(apiError);

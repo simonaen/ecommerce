@@ -1,14 +1,13 @@
 package edu.ktu.ecommerce.model.auth;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.NotBlank;
+
 @Data
 @NoArgsConstructor
-@AllArgsConstructor(staticName = "of")
-
-public class LoginResponse {
-    private String jwt;
+public class RefreshTokenRequest {
+    @NotBlank
     private String refreshToken;
 }
