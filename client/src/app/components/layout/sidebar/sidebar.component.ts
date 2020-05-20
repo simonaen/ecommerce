@@ -1,9 +1,11 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {faMars, faVenus} from '@fortawesome/free-solid-svg-icons';
 import {Subscription} from 'rxjs';
-import {isSidebarCollapsed, LayoutState} from '../../../core/store/state/layout.state';
+import {gender, isSidebarCollapsed, LayoutState} from '@core/store/layout/layout.state';
 import {Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
+import {Gender} from "@core/models/gender.enum";
+import {LayoutActions} from "@core/store/layout/layout.actions";
 
 interface ProductCategoryMenuItem {
   iconLink: string;
@@ -25,13 +27,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
     {title: 'Accessories', iconLink: 'assets/icons/accessories.svg'},
   ];
 
+  gender: Gender;
+  genderSub: Subscription;
+
   @HostBinding('class.collapsed')
   sidebarCollapsed: boolean;
   sidebarStatusSub: Subscription;
 
   constructor(private store: Store<LayoutState>) {
-    this.sidebarStatusSub = store.select(isSidebarCollapsed).pipe(
+    this.sidebarStatusSub = this.store.select(isSidebarCollapsed).pipe(
       tap(isCollapsed => this.sidebarCollapsed = isCollapsed)
+    ).subscribe();
+
+    this.genderSub = this.store.select(gender).pipe(
+      tap(gender => this.gender = gender)
     ).subscribe();
   }
 
@@ -40,5 +49,20 @@ export class SidebarComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.sidebarStatusSub.unsubscribe();
+    this.genderSub.unsubscribe();
+  }
+
+  isGenderActive(gender: 'male' | 'female') {
+    if (gender === 'male') {
+      return this.gender === Gender.Male
+    } else {
+      return this.gender === Gender.Female;
+    }
+  }
+
+  setGender(gender: 'male' | 'female') {
+    gender === 'male' ?
+      this.store.dispatch(LayoutActions.setGender({gender: Gender.Male})) :
+      this.store.dispatch(LayoutActions.setGender({gender: Gender.Female}));
   }
 }

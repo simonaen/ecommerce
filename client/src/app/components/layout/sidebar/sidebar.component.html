@@ -26,10 +26,16 @@
 
 <ng-template #gender>
   <div class="gender">
-    <button mat-button>
+    <button
+      mat-button
+      [class.active]="isGenderActive('male')"
+      (click)="setGender('male')">
       <fa-icon [icon]="icons.male" class="male-icon"></fa-icon>
     </button>
-    <button mat-button>
+    <button
+      mat-button
+      [class.active]="isGenderActive('female')"
+      (click)="setGender('female')">
       <fa-icon [icon]="icons.female" class="female-icon"></fa-icon>
     </button>
   </div>

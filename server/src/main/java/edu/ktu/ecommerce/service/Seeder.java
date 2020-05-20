@@ -37,6 +37,7 @@ public class Seeder {
 
     private final SizeRepository sizeRepository;
     private final ItemVarietyRepository itemVarietyRepository;
+    private final ImageRepository imageRepository;
 
     @Value("classpath:db/seed/item.json")
     private Resource itemFile;
@@ -44,13 +45,15 @@ public class Seeder {
 
     public Seeder(BrandRepository brandRepository, ColorRepository colorRepository,
                   ItemCategoryRepository itemCategoryRepository, ItemRepository itemRepository,
-                  SizeRepository sizeRepository, ItemVarietyRepository itemVarietyRepository) {
+                  SizeRepository sizeRepository, ItemVarietyRepository itemVarietyRepository,
+                  ImageRepository imageRepository) {
         this.brandRepository = brandRepository;
         this.colorRepository = colorRepository;
         this.itemCategoryRepository = itemCategoryRepository;
         this.itemRepository = itemRepository;
         this.sizeRepository = sizeRepository;
         this.itemVarietyRepository = itemVarietyRepository;
+        this.imageRepository = imageRepository;
     }
 
     public void seed() throws IOException {
@@ -74,7 +77,6 @@ public class Seeder {
                 sizeRepository.saveAndFlush(size);
             }
         }
-
     }
 
     private void seedItems() throws IOException {
@@ -120,11 +122,12 @@ public class Seeder {
 
             // Save
             var itemVarieties = item.getItemVarieties();
+            var itemImages = item.getImages();
+            item.setImages(null);
             item.setItemVarieties(null);
             itemRepository.save(item);
 
             // Create item varieties
-
             for (var itemVariety : itemVarieties) {
                 // Get persisted size
                 var size = itemVariety.getSize();
@@ -140,6 +143,11 @@ public class Seeder {
                 itemVarietyRepository.saveAndFlush(itemVariety);
             }
             item.setItemVarieties(itemVarieties);
+
+            // Create item images
+            itemImages.forEach(image -> image.setItem(item));
+            imageRepository.saveAll(itemImages);
+
             itemRepository.saveAndFlush(item);
         }
         log.info("Seeding items completed");

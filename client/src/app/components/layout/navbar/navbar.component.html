@@ -1,4 +1,9 @@
 <mat-toolbar>
-  <figure *ngIf="sidebarCollapsed" class="brand animated fadeIn fast"><img src="../assets/logo.svg" alt="e-commerce logo"></figure>
+  <figure *ngIf="sidebarCollapsed" class="brand animated fadeIn fast"><img src="assets/logo.svg" alt="e-commerce logo">
+  </figure>
   <app-global-search></app-global-search>
+  <div class="login-signup" *ngIf="!(isLoggedIn$ | async)">
+    <button mat-raised-button routerLink="/auth/login">Login</button>
+    <button mat-raised-button routerLink="/auth/register">Signup</button>
+  </div>
 </mat-toolbar>
