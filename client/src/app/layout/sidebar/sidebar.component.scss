@@ -11,6 +11,10 @@
   transition: width 400ms cubic-bezier(0.45, 0, 0.55, 1);
 }
 
+.gender .active {
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
 :host.collapsed {
   width: 2.75rem;
 }

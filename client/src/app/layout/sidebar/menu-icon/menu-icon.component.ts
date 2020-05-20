@@ -2,8 +2,8 @@ import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
 import {isSidebarCollapsed, LayoutState} from '../../store';
 import {take, tap} from 'rxjs/operators';
-import {collapseSidebar, expandSidebar} from '../../store/layout.actions';
 import {Observable} from 'rxjs';
+import {LayoutActions} from "../../store/layout.actions";
 
 @Component({
   selector: 'app-menu-icon',
@@ -30,7 +30,7 @@ export class MenuIconComponent implements OnInit {
     this.store.select(isSidebarCollapsed).pipe(
       take(1),
       tap(isCollapsed => {
-        isCollapsed ? this.store.dispatch(expandSidebar()) : this.store.dispatch(collapseSidebar());
+        isCollapsed ? this.store.dispatch(LayoutActions.expandSidebar()) : this.store.dispatch(LayoutActions.collapseSidebar());
       })
     ).subscribe();
   }
