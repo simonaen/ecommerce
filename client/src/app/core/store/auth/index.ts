@@ -13,3 +13,6 @@ export const isLoginLoading = createSelector(getAuthState, (state: AuthState) =>
   return state.isLoginLoading;
 });
 
+export const isLoggedIn = createSelector(getAuthState, (state: AuthState) => {
+  return state.isLoggedIn;
+})
