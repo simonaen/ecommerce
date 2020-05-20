@@ -1,6 +1,6 @@
 import {createAction, props} from "@ngrx/store";
 import {RegisterInput} from "../../models/auth/register-input.model";
-import {Jwt} from "../../models/auth/jwt.model";
+import {AuthToken} from "../../models/auth/jwt.model";
 
 const register = createAction(
   '[Auth] Register Begin',
@@ -9,7 +9,7 @@ const register = createAction(
 
 const registerSuccess = createAction(
   '[Auth] Register Success',
-  props<Jwt>()
+  props<AuthToken>()
 );
 
 const registerFailed = createAction(

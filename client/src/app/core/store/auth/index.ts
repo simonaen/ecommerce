@@ -2,6 +2,7 @@ import {createFeatureSelector, createSelector} from "@ngrx/store";
 
 export interface AuthState {
   jwt: string,
+  refreshToken: string,
   isLoginLoading: boolean,
   isRegisterLoading: boolean,
   isLoggedIn: boolean

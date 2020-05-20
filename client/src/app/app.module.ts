@@ -8,11 +8,12 @@ import {StoreModule} from '@ngrx/store';
 import {reducer as layoutReducer} from './layout/store/layout.reducer';
 import {reducer as authReducer} from './core/store/auth/auth.reducer';
 import {AppRoutingModule} from "./app-routing.module";
-import {HttpClientModule} from "@angular/common/http";
+import {HTTP_INTERCEPTORS, HttpClientModule} from "@angular/common/http";
 import {EffectsModule} from "@ngrx/effects";
 import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NotificationComponent} from "./core/services/shared/notification.service";
+import {JwtInterceptor} from "./core/services/auth/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,13 @@ import {NotificationComponent} from "./core/services/shared/notification.service
     StoreDevtoolsModule.instrument({maxAge: 25}),
     LayoutModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true
+    }
+  ],
   bootstrap: [AppComponent],
   entryComponents: [NotificationComponent]
 })

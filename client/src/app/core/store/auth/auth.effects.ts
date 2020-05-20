@@ -4,7 +4,7 @@ import {LoginActions} from "./login.actions";
 import {AuthService} from "../../services/auth/auth.service";
 import {catchError, exhaustMap, map, tap} from "rxjs/operators";
 import {of} from "rxjs";
-import {Jwt} from "../../models/auth/jwt.model";
+import {AuthToken} from "../../models/auth/jwt.model";
 import {NotificationService} from "../../services/shared/notification.service";
 import {ApiError} from "../../models/api-error.model";
 import {RegisterActions} from "./register.actions";
@@ -15,9 +15,9 @@ export class AuthEffects {
   login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(LoginActions.login),
-      exhaustMap(action =>
-        this.authService.login(action).pipe(
-          map((jwt: Jwt) => LoginActions.loginSuccess(jwt)),
+      exhaustMap(payload =>
+        this.authService.login(payload).pipe(
+          map((jwt: AuthToken) => LoginActions.loginSuccess(jwt)),
           catchError((error: ApiError) => {
             this.notificationService.createNotification(error.message, "warning");
             return of(LoginActions.loginFail());
@@ -29,8 +29,8 @@ export class AuthEffects {
   loginSuccess$ = createEffect(() =>
       this.actions$.pipe(
         ofType(LoginActions.loginSuccess, RegisterActions.registerSuccess),
-        tap(action => {
-          this.authService.setToken(action.jwt);
+        tap(payload => {
+          this.authService.setToken(payload);
           this.router.navigateByUrl('/').then();
         })
       )
@@ -39,9 +39,9 @@ export class AuthEffects {
   register$ = createEffect(() =>
     this.actions$.pipe(
       ofType(RegisterActions.register),
-      exhaustMap(action =>
-        this.authService.register(action).pipe(
-          map((jwt: Jwt) => {
+      exhaustMap(payload =>
+        this.authService.register(payload).pipe(
+          map((jwt: AuthToken) => {
             this.router.navigateByUrl('/').then();
             return RegisterActions.registerSuccess(jwt);
           }),

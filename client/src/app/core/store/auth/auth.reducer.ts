@@ -1,12 +1,13 @@
 import {AuthState} from "./index";
 import {ActionTypes, LoginActions} from "./login.actions";
 import {createReducer, on} from "@ngrx/store";
-import {Jwt} from "../../models/auth/jwt.model";
+import {AuthToken} from "../../models/auth/jwt.model";
 import {RegisterActions} from "./register.actions";
 import {AuthActions} from "./auth.actions";
 
 export const initialState: AuthState = {
   jwt: null,
+  refreshToken: null,
   isLoginLoading: false,
   isRegisterLoading: false,
   isLoggedIn: false
@@ -14,14 +15,14 @@ export const initialState: AuthState = {
 
 const _reducer = createReducer(initialState,
   on(AuthActions.initAuthState, (state, action) => {
-    return {...state, isLoggedIn: !!action.jwt, jwt: action.jwt};
+    return {...state, isLoggedIn: !!action.jwt, jwt: action.jwt, refreshToken: action.refreshToken};
   }),
   // Login actions
   on(LoginActions.login, state => {
     return {...state, isLoginLoading: true}
   }),
-  on(LoginActions.loginSuccess, (state, action: Jwt) => {
-    return {...state, jwt: action.jwt, isLoginLoading: false, isLoggedIn: true}
+  on(LoginActions.loginSuccess, (state, action: AuthToken) => {
+    return {...state, jwt: action.jwt, isLoginLoading: false, isLoggedIn: true, refreshToken: action.refreshToken}
   }),
   on(LoginActions.loginFail, state => {
     return {...state, isLoginLoading: false}
@@ -31,8 +32,8 @@ const _reducer = createReducer(initialState,
   on(RegisterActions.register, state => {
     return {...state, isRegisterLoading: true}
   }),
-  on(RegisterActions.registerSuccess, (state, action: Jwt) => {
-    return {...state, jwt: action.jwt, isRegisterLoading: false, isLoggedIn: true}
+  on(RegisterActions.registerSuccess, (state, action: AuthToken) => {
+    return {...state, jwt: action.jwt, isRegisterLoading: false, isLoggedIn: true, refreshToken: action.refreshToken}
   }),
   on(RegisterActions.registerFail, state => {
     return {...state, isRegisterLoading: false}

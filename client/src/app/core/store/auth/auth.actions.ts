@@ -1,9 +1,9 @@
 import {createAction, props} from "@ngrx/store";
-import {Jwt} from "../../models/auth/jwt.model";
+import {AuthToken} from "../../models/auth/jwt.model";
 
 const initAuthState = createAction(
   '[Auth] Init state',
-  props<Jwt>()
+  props<AuthToken>()
 );
 
 export const AuthActions = {

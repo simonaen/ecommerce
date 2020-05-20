@@ -1,5 +1,5 @@
 import {createAction, props, union} from "@ngrx/store";
-import {Jwt} from "../../models/auth/jwt.model";
+import {AuthToken} from "../../models/auth/jwt.model";
 import {LoginInput} from "../../models/auth/login-input.model";
 import {ApiError} from "../../models/api-error.model";
 
@@ -10,7 +10,7 @@ const login = createAction(
 
 const loginSuccess = createAction(
   "[Auth] Login Success",
-  props<Jwt>()
+  props<AuthToken>()
 );
 
 const loginFail = createAction(

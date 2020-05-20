@@ -1,3 +1,4 @@
-export interface Jwt {
-  jwt: string
+export interface AuthToken {
+  jwt: string;
+  refreshToken: string;
 }
