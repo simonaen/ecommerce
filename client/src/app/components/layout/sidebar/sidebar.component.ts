@@ -1,11 +1,11 @@
 import {Component, HostBinding, OnDestroy, OnInit} from '@angular/core';
 import {faMars, faVenus} from '@fortawesome/free-solid-svg-icons';
 import {Subscription} from 'rxjs';
-import {gender, isSidebarCollapsed, LayoutState} from '../store';
+import {gender, isSidebarCollapsed, LayoutState} from '@core/store/layout/layout.state';
 import {Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
-import {Gender} from "../../core/models/gender.enum";
-import {LayoutActions} from "../store/layout.actions";
+import {Gender} from "@core/models/gender.enum";
+import {LayoutActions} from "@core/store/layout/layout.actions";
 
 interface ProductCategoryMenuItem {
   iconLink: string;

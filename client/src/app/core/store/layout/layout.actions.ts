@@ -1,5 +1,5 @@
 import {createAction, props} from '@ngrx/store';
-import {Gender} from "../../core/models/gender.enum";
+import {Gender} from "@core/models/gender.enum";
 
 const expandSidebar = createAction('[Layout] Expand sidebar');
 
@@ -11,4 +11,4 @@ export const LayoutActions = {
   expandSidebar,
   collapseSidebar,
   setGender
-}
+};

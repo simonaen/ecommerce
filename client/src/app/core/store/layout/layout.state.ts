@@ -1,5 +1,5 @@
 import {createFeatureSelector, createSelector} from '@ngrx/store';
-import {Gender} from "../../core/models/gender.enum";
+import {Gender} from "@core/models/gender.enum";
 
 export interface LayoutState {
   sidebarCollapsed: boolean;

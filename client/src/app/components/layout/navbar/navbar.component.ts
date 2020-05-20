@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {isSidebarCollapsed, LayoutState} from '../../../core/store/state/layout.state';
+import {isSidebarCollapsed, LayoutState} from '@core/store/layout/layout.state';
 import {Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {Observable, Subscription} from 'rxjs';
-import {AuthState, isLoggedIn} from "../../core/store/auth";
+import {AuthState, isLoggedIn} from "@core/store/auth";
 
 @Component({
   selector: 'app-navbar',

@@ -1,9 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {Store} from '@ngrx/store';
-import {isSidebarCollapsed, LayoutState} from '../../../../core/store/state/layout.state';
+import {isSidebarCollapsed, LayoutState} from '@core/store/layout/layout.state';
 import {take, tap} from 'rxjs/operators';
 import {Observable} from 'rxjs';
-import {LayoutActions} from "../../store/layout.actions";
+import {LayoutActions} from "@core/store/layout/layout.actions";
 
 @Component({
   selector: 'app-menu-icon',
