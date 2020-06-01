@@ -1,23 +1,27 @@
 <div class="wrapper">
-  <figure><img src="assets/logo.svg" alt=""></figure>
-  <h1 class="mat-display-3">Login</h1>
-  <form [formGroup]="loginForm" (submit)="onSubmit()">
-    <mat-form-field appearance="outline">
-      <mat-label>📧 Email</mat-label>
-      <input type="email" matInput placeholder="Your email" formControlName="email">
-    </mat-form-field>
-    <mat-form-field appearance="outline">
-      <mat-label>🔑 Password</mat-label>
-      <input type="password" matInput formControlName="password">
-    </mat-form-field>
-    <div class="button-group">
-      <button mat-raised-button color="primary" type="button" (click)="onSubmit()">
-        <span>LOGIN WITH EMAIL</span>
-      </button>
-      <button mat-raised-button type="button" (click)="onSubmitGoogle()">
-        <img src="assets/icons/google.svg" alt="Google icon">LOGIN WITH GOOGLE
-      </button>
-    </div>
-  </form>
-  <a class="signup" routerLink="/auth/register">Signup</a>
+	<figure><img src="assets/logo.svg" alt=""></figure>
+	<h1 class="mat-display-3">Login</h1>
+	<form [formGroup]="loginForm" (submit)="onSubmit()">
+		<mat-form-field appearance="outline">
+			<mat-label>📧 Email</mat-label>
+			<input type="email" matInput placeholder="Your email" formControlName="email">
+		</mat-form-field>
+		<mat-form-field appearance="outline">
+			<mat-label>🔑 Password</mat-label>
+			<input type="password" matInput formControlName="password">
+		</mat-form-field>
+		<div class="button-group">
+			<button mat-raised-button color="primary" type="submit">
+				<span>LOGIN WITH EMAIL</span>
+			</button>
+			<button mat-raised-button type="button" (click)="onSubmitGoogle()">
+				<img src="assets/icons/google.svg" alt="Google icon">LOGIN WITH GOOGLE
+			</button>
+		</div>
+	</form>
+	<button mat-button class="signup" routerLink="/auth/register">Signup</button>
 </div>
+
+<button mat-button class="back-button" [routerLink]="'/app'">
+	<mat-icon [inline]="true">arrow_back_ios</mat-icon>
+</button>

@@ -3,6 +3,7 @@ package edu.ktu.ecommerce.security;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.ktu.ecommerce.exception.RestExceptionHandler;
 import io.jsonwebtoken.ExpiredJwtException;
+import io.jsonwebtoken.SignatureException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -53,7 +54,14 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             response.getOutputStream().print(
                     mapper.writeValueAsString(errorResponseEntity.getBody())
             );
-            chain.doFilter(request, response);
+            return;
+        } catch (SignatureException e) {
+            var errorResponseEntity = exceptionHandler.handleSignatureException(e);
+            response.setStatus(errorResponseEntity.getStatusCodeValue());
+            response.setContentType("application/json");
+            response.getOutputStream().print(
+                    mapper.writeValueAsString(errorResponseEntity.getBody())
+            );
             return;
         }
 

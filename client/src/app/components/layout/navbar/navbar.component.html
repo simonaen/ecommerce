@@ -3,7 +3,7 @@
   </figure>
   <app-global-search></app-global-search>
   <div class="login-signup" *ngIf="!(isLoggedIn$ | async)">
-    <button mat-raised-button routerLink="/auth/login">Login</button>
-    <button mat-raised-button routerLink="/auth/register">Signup</button>
+	  <button mat-button routerLink="/auth/login">Login</button>
+	  <button mat-button routerLink="/auth/register">Signup</button>
   </div>
 </mat-toolbar>

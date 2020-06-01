@@ -19,6 +19,7 @@ public class ApiError {
     private String message;
     private String debugMessage;
     private List<ApiValidationError> subErrors;
+    private String Id;
 
     private ApiError() {
         timestamp = LocalDateTime.now();
@@ -74,6 +75,10 @@ public class ApiError {
         this.addValidationError(
                 objectError.getObjectName(),
                 objectError.getDefaultMessage());
+    }
+
+    public void setId(String id) {
+        Id = id;
     }
 
     public void addValidationError(List<ObjectError> globalErrors) {
