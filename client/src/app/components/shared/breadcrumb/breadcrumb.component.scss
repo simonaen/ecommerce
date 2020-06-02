@@ -1,0 +1,17 @@
+:host {
+	display: flex;
+
+	div {
+		display: flex;
+		align-items: center;
+
+		// TODO: Use variable
+		color: #4F5259;
+		font-size: 12px;
+
+		mat-icon {
+			font-size: 0.5rem;
+			margin: 0 0.25rem;
+		}
+	}
+}

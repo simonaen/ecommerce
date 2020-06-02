@@ -1,0 +1,38 @@
+<ng-container
+	*ngTemplateOutlet="details ? defaultDetails: loading">
+</ng-container>
+
+<ng-template #defaultDetails>
+	<h2>{{details.title}}</h2>
+	<span class="price">{{details.price}}</span>
+	<mat-form-field class="size-picker">
+		<mat-label>Item size</mat-label>
+		<mat-select>
+			<mat-option *ngFor="let size of details.sizes" [value]="size.id">
+				{{size.size}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+	<div class="button-group">
+		<button mat-icon-button>
+			<mat-icon>share</mat-icon>
+		</button>
+		<button mat-icon-button>
+			<mat-icon>favorite_border</mat-icon>
+		</button>
+		<button mat-raised-button color="accent">Add to Cart</button>
+	</div>
+	<section>
+		<h3 class="details-title">Product details</h3>
+		<p class="description" [innerHTML]="details.fullDescription"></p>
+		<figure class="brand-logo">{{details.brand.companyLogoURL}}</figure>
+	</section>
+</ng-template>
+
+<ng-template #loading>
+	<h2></h2>
+	<span class="price"></span>
+	<section></section>
+</ng-template>
+
+

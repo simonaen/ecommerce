@@ -3,8 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false,
-  serverUrl: 'http://localhost:4200/api'
+	production: false,
+	serverUrl: 'http://localhost:4200/api',
+	cdnUrl: 'https://img2.ans-media.com/i/'
 };
 
 /*

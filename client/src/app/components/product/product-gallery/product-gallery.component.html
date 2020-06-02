@@ -1,0 +1,12 @@
+<div class="gallery">
+	<figure class="main">
+		<img [src]="mainImage ? mainImage.largeUrl : null" alt="" class="main">
+	</figure>
+	<div class="sub-images">
+		<figure
+			*ngFor="let image of subImages; let i=index"
+			(click)="setActiveImage(i)">
+			<img [src]="image.thumbUrl" alt="">
+		</figure>
+	</div>
+</div>

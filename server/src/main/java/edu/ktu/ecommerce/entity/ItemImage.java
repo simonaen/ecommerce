@@ -1,5 +1,6 @@
 package edu.ktu.ecommerce.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -22,6 +23,7 @@ public class ItemImage {
     private String version;
 
     @ManyToOne
+    @JsonBackReference
     private Item item;
 
 }

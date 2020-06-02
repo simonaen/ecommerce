@@ -1,0 +1,36 @@
+@import "~theming/_variables";
+
+:host {
+	display: flex;
+	flex-direction: column;
+	margin-right: 2rem;
+
+	h2, .price {
+		text-align: right;
+	}
+
+	.price {
+		font-size: 1.5rem;
+		font-weight: bold;
+		color: darken($primary-color, 50);
+	}
+
+	.size-picker {
+		display: flex;
+		align-self: flex-end;
+	}
+
+	.button-group {
+		align-self: flex-end;
+
+		button {
+			margin-left: 0.5rem;
+		}
+	}
+
+	section {
+		p {
+			line-height: 1.5;
+		}
+	}
+}

@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {ItemsCatalogService} from "../../core/services/items-catalog.service";
-import {CatalogItem} from "../../core/models/item/catalog-item.model";
+import {ItemsCatalogService} from "@core/services/items-catalog.service";
+import {CatalogItem} from "@core/models/item/catalog-item.model";
 import {map} from "rxjs/operators";
 
 @Component({
@@ -10,6 +10,7 @@ import {map} from "rxjs/operators";
 })
 export class ItemsCatalogComponent implements OnInit {
 	public items: Array<CatalogItem> = [];
+
 	constructor(
 		private itemsCatalogService:ItemsCatalogService
 	) {

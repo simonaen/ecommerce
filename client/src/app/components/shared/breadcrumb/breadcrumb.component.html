@@ -1,0 +1,4 @@
+<div *ngFor="let element of elements; let i = index">
+	<a (click)="navigateToElement(i)">{{element.title | titlecase}}</a>
+	<mat-icon *ngIf="i < elements.length - 1" [inline]="true">chevron_right</mat-icon>
+</div>
