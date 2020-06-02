@@ -4,6 +4,7 @@ import {Store} from '@ngrx/store';
 import {tap} from 'rxjs/operators';
 import {Observable, Subscription} from 'rxjs';
 import {AuthState, isLoggedIn} from "@core/store/auth";
+import {AuthActions} from "@core/store/auth/auth.actions";
 
 @Component({
   selector: 'app-navbar',
@@ -21,13 +22,21 @@ export class NavbarComponent implements OnInit, OnDestroy {
       tap(collapsed => this.sidebarCollapsed = collapsed)
     ).subscribe();
 
-    this.isLoggedIn$ = this.authStore.select(isLoggedIn);
+	  this.isLoggedIn$ = this.authStore.select(isLoggedIn);
   }
 
-  ngOnInit() {
-  }
+	ngOnInit() {
+	}
 
-  ngOnDestroy(): void {
-    this.sidebarCollapsedSub.unsubscribe();
-  }
+	ngOnDestroy(): void {
+		this.sidebarCollapsedSub.unsubscribe();
+	}
+
+	getInitials() {
+		return "AB";
+	}
+
+	logout() {
+		this.authStore.dispatch(AuthActions.logout());
+	}
 }

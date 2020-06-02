@@ -1,0 +1,19 @@
+.search {
+	display: flex;
+	width: 15rem;
+	color: #4F5259;
+
+	figure {
+		display: flex;
+	}
+
+	label {
+		display: flex;
+		width: 100%;
+
+		input {
+			width: 100%;
+			border: none;
+		}
+	}
+}

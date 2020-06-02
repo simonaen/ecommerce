@@ -1,9 +1,27 @@
 <mat-toolbar>
-  <figure *ngIf="sidebarCollapsed" class="brand animated fadeIn fast"><img src="assets/logo.svg" alt="e-commerce logo">
-  </figure>
-  <app-global-search></app-global-search>
-  <div class="login-signup" *ngIf="!(isLoggedIn$ | async)">
-	  <button mat-button routerLink="/auth/login">Login</button>
-	  <button mat-button routerLink="/auth/register">Signup</button>
-  </div>
+	<figure *ngIf="sidebarCollapsed" class="brand animated fadeIn fast"><img src="assets/logo.svg"
+																			 alt="e-commerce logo">
+	</figure>
+	<app-global-search></app-global-search>
+	<div class="login-signup" *ngIf="!(isLoggedIn$ | async)">
+		<button mat-button routerLink="/auth/login">Login</button>
+		<button mat-button routerLink="/auth/register">Signup</button>
+	</div>
+	<div *ngIf="(isLoggedIn$ | async)" class="right-nav-items">
+		<button mat-button>
+			<mat-icon>favorite_border</mat-icon>
+		</button>
+		<button class="cart" mat-button>
+			<mat-icon>shopping_cart
+			</mat-icon>
+			Cart
+		</button>
+		<button mat-button class="avatar" [matMenuTriggerFor]="avatar">
+			<span class="image">{{getInitials()}}</span>
+			<span class="mat-body">Hello</span>
+		</button>
+		<mat-menu #avatar="matMenu">
+			<button mat-menu-item (click)="logout()">Logout</button>
+		</mat-menu>
+	</div>
 </mat-toolbar>

@@ -69,9 +69,7 @@ export class AuthService {
 	}
 
 	clearToken() {
-		this.setToken({
-			jwt: undefined,
-			refreshToken: undefined
-		});
+		localStorage.removeItem(this.tokenKey);
+		localStorage.removeItem(this.refreshTokenKey);
 	}
 }
