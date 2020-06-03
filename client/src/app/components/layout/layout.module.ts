@@ -9,19 +9,23 @@ import {MenuIconComponent} from './sidebar/menu-icon/menu-icon.component';
 import {MatButtonModule} from '@angular/material/button';
 import {FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {GlobalSearchComponent} from './navbar/global-search/global-search.component';
+import {MatIconModule} from "@angular/material/icon";
+import {MatMenuModule} from "@angular/material/menu";
 
 @NgModule({
-  declarations: [NavbarComponent, SidebarComponent, LayoutComponent, MenuIconComponent, GlobalSearchComponent],
-  exports: [
-    LayoutComponent
-  ],
-  imports: [
-    CommonModule,
-    AppRoutingModule,
-    FontAwesomeModule,
-    MatToolbarModule,
-    MatButtonModule
-  ]
+	declarations: [NavbarComponent, SidebarComponent, LayoutComponent, MenuIconComponent, GlobalSearchComponent],
+	exports: [
+		LayoutComponent
+	],
+	imports: [
+		CommonModule,
+		AppRoutingModule,
+		FontAwesomeModule,
+		MatToolbarModule,
+		MatButtonModule,
+		MatIconModule,
+		MatMenuModule
+	]
 })
 export class LayoutModule {
 }

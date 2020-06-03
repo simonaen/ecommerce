@@ -1,0 +1,19 @@
+:host {
+	display: flex;
+	flex-direction: column;
+
+	.main-content {
+		display: flex;
+		max-width: 1200px;
+		align-self: center;
+		width: 100%;
+
+		product-description, product-gallery {
+			flex: 1;
+		}
+
+		product-description {
+			max-width: 675px;
+		}
+	}
+}

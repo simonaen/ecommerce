@@ -14,6 +14,7 @@ import {StoreDevtoolsModule} from "@ngrx/store-devtools";
 import {MatSnackBarModule} from "@angular/material/snack-bar";
 import {NotificationComponent} from "@core/services/shared/notification.service";
 import {JwtInterceptor} from "@core/services/auth/jwt.interceptor";
+import {AuthEffects} from "@core/store/auth/auth.effects";
 
 @NgModule({
   declarations: [
@@ -21,23 +22,23 @@ import {JwtInterceptor} from "@core/services/auth/jwt.interceptor";
     NotificationComponent
   ],
   imports: [
-    BrowserModule,
-    BrowserAnimationsModule,
-    AppRoutingModule,
-    HttpClientModule,
-    MatSnackBarModule,
-    StoreModule.forRoot({
-      layout: layoutReducer,
-      auth: authReducer
-    }, {
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
-    EffectsModule.forRoot(),
-    StoreDevtoolsModule.instrument({maxAge: 25}),
-    LayoutModule,
+	  BrowserModule,
+	  BrowserAnimationsModule,
+	  AppRoutingModule,
+	  HttpClientModule,
+	  MatSnackBarModule,
+	  StoreModule.forRoot({
+		  layout: layoutReducer,
+		  auth: authReducer
+	  }, {
+		  runtimeChecks: {
+			  strictStateImmutability: true,
+			  strictActionImmutability: true
+		  }
+	  }),
+	  EffectsModule.forRoot([AuthEffects]),
+	  StoreDevtoolsModule.instrument({maxAge: 25}),
+	  LayoutModule,
   ],
   providers: [
     {

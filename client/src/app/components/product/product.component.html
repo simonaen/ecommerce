@@ -1,0 +1,7 @@
+<app-breadcrumb [elements]="product ? getBreadcrumbElements() : null"></app-breadcrumb>
+<div class="main-content">
+	<product-description
+		[details]="product ? getDetails() : null">
+	</product-description>
+	<product-gallery [images]="product?.images"></product-gallery>
+</div>

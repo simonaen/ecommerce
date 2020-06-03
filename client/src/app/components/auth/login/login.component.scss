@@ -1,67 +1,90 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	min-height: 100%;
 }
 
 .wrapper {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  padding: 1rem;
-  flex: 1;
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 1rem;
+	flex: 1;
 }
 
 figure {
-  align-items: center;
-  flex: 1;
+	align-items: center;
+	flex: 1;
 
-  img {
-    height: 3.2rem;
-  }
+	img {
+		height: 3.2rem;
+	}
 }
 
 h1 {
-  font-weight: bold;
-  text-align: center;
+	font-weight: bold;
+	text-align: center;
 }
 
 form {
-  display: flex;
-  flex-direction: column;
+	display: flex;
+	flex-direction: column;
 
-  .button-group {
-    display: flex;
-    flex-direction: column;
+	.button-group {
+		display: flex;
+		flex-direction: column;
 
-    button {
-      padding: 0.5rem 0;
-      margin: 0.5rem 0;
-      font-weight: bold;
+		button {
+			padding: 0.5rem 0;
+			margin: 0.5rem 0;
+			font-weight: bold;
 
-      img {
-        height: 18px;
-        padding-right: 0.25rem;
-        padding-bottom: 3px;
-      }
-    }
-  }
+			img {
+				height: 18px;
+				padding-right: 0.25rem;
+				padding-bottom: 3px;
+			}
+		}
+	}
 }
 
 .signup {
-  margin-bottom: 2rem;
-  text-align: end;
-  text-decoration: none;
+	margin-bottom: 2rem;
+	align-self: flex-end;
+	text-align: end;
+	text-decoration: none;
 }
 
 .mat-error {
-  text-align: end;
+	text-align: end;
+}
+
+.back-button {
+	position: absolute;
+	text-align: center;
+	top: 1rem;
+	display: flex;
+	justify-content: center;
+	left: 1rem;
+
+	mat-icon {
+		padding-left: 13px;
+		font-size: 1.5rem;
+	}
 }
 
 @media screen and (min-width: 425px) {
-  .wrapper {
-    max-width: 425px;
-  }
+	.wrapper {
+		max-width: 425px;
+	}
+
+	.back-button {
+		top: 2rem;
+		left: 2rem;
+		font-size: 2rem;
+		padding: 0.5rem;
+	}
 }
+

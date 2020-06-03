@@ -1,5 +1,6 @@
 package edu.ktu.ecommerce.service;
 
+import edu.ktu.ecommerce.model.ItemModel;
 import edu.ktu.ecommerce.repository.ItemRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -12,14 +13,9 @@ import javax.transaction.Transactional;
 
 @Service
 @Transactional
-public class ItemService {
-    private ItemRepository itemRepository;
+public interface ItemService {
 
-    public ItemService(ItemRepository itemRepository) {
-        this.itemRepository = itemRepository;
-    }
+    List<Item> getAllItems();
 
-    public List<Item> getAllItems() {
-        return itemRepository.findAll();
-    }
+    ItemModel getItemById(Long id);
 }

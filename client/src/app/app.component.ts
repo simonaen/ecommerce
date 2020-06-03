@@ -1,13 +1,13 @@
 import {Component} from '@angular/core';
-import {AuthService} from "./core/services/auth/auth.service";
+import {AuthService} from "@core/services/auth/auth.service";
 
 @Component({
-  selector: 'app-root',
-  template: '<router-outlet></router-outlet>',
-  styleUrls: ['./app.component.scss']
+	selector: 'app-root',
+	template: '<router-outlet></router-outlet>',
+	styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  constructor(private authService: AuthService) {
-    this.authService.initializeAuthState();
-  }
+	constructor(private authService: AuthService) {
+		this.authService.initializeAuthState();
+	}
 }
