@@ -4,7 +4,7 @@ import {LoginComponent} from './login.component';
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatInputModule} from "@angular/material/input";
 import {provideMockStore} from "@ngrx/store/testing";
-import {NotificationService} from "../../../core/services/shared/notification.service";
+import {NotificationService} from "@core/services/shared/notification.service";
 import {NoopAnimationsModule} from "@angular/platform-browser/animations";
 import {RouterTestingModule} from "@angular/router/testing";
 import {MatIconModule} from "@angular/material/icon";
